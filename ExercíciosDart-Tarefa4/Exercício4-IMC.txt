@@ -1,0 +1,35 @@
+import 'package:flutter/material.dart';
+    //1
+void main() {
+runApp(MaterialApp(
+home: Scaffold(
+          appBar: AppBar(
+              title:Center(child:Text("Cálculo de IMC", style: TextStyle(color:Colors.black87))),
+              backgroundColor: Colors.redAccent    
+          ),
+          body: Column(children: <Widget>[
+            Padding(padding:EdgeInsets.fromLTRB(0,20,0,0),child:Icon(Icons.calculate,size:100.0,color:Colors.black87)),
+            Padding(padding:EdgeInsets.fromLTRB(80,15,80,5), child:TextField(keyboardType: TextInputType.number, decoration: InputDecoration(labelText:"Digite o seu peso",
+                                                 labelStyle: TextStyle(color:Colors.black87),
+                                                 border: OutlineInputBorder(),))),
+            Text(""),
+            Padding(padding:EdgeInsets.fromLTRB(80,15,80,5), child:TextField(keyboardType: TextInputType.number, decoration: InputDecoration(labelText:"Digite a sua altura",
+                                                 labelStyle: TextStyle(color:Colors.black87),
+                                                 border: OutlineInputBorder(),))),
+            Text(""),
+            Row(children: <Widget>[
+            Padding(padding:EdgeInsets.fromLTRB(140,15,0,0), child: RaisedButton(color:Colors.redAccent,
+                        padding:EdgeInsets.fromLTRB(35,20,30,20),
+                        child: Text("Limpar", style: TextStyle(fontSize:25,color:Colors.black87)), 
+                        onPressed:(){})), 
+            
+            Padding(padding:EdgeInsets.fromLTRB(50,15,0,0), child:RaisedButton(color:Colors.redAccent,
+                        padding:EdgeInsets.fromLTRB(35,20,35,20),
+                        child: Text("Calcular", style: TextStyle(fontSize:25,color:Colors.black87)), 
+                        onPressed:(){})),
+
+           ]),    
+         ]),
+      )));
+}
+

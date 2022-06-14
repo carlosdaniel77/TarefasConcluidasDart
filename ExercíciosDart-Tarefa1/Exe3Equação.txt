@@ -1,0 +1,71 @@
+import 'dart:math';
+
+class Equacao{ 
+  int _ax2, _bx,_c;
+  
+  // construtor
+  Equacao(this._ax2, this._bx, this._c);
+  
+  //gets e sets
+  int getAx2(){
+    return this._ax2;
+  }
+  void setAx2(int ax2){
+    this._ax2 = ax2;
+  }
+   int getBx(){
+    return this._bx;
+  }
+  void setBx(int bx){
+    this._bx = bx;
+  }
+   int getC(){
+    return this._c;
+  }
+  void setC(int c){
+    this._c = c;
+  }
+  
+  // Metodos
+  String calculaRaiz(){
+    double a=this._ax2.toDouble(), b=this._bx.toDouble(), c=this._c.toDouble();
+    double delta=((b*b)-4*a*c);
+    double x1=((-b+ sqrt(delta))/(2*a));
+    double x2=((-b- sqrt(delta))/(2*a));
+    String resultado = "As raiz na equação são "+x1.toString()
+      +" e "+x2.toString();
+    return resultado;
+  }
+  
+  bool equals(Equacao eq){ 
+    int contador=0;
+    
+      if(eq._ax2==this._ax2&&eq._bx==this._bx&&eq._c==this._c){
+        return true;
+      }
+    return false;
+  }
+  
+  String toString(){
+    String resultado = "A="+this._ax2.toString()+" B="+this._bx.toString()
+      +" C="+this._c.toString();
+    
+    return resultado;
+  }
+}  
+ void main(){
+   Equacao equa1= new Equacao(4,-8,0);
+   Equacao equa2= new Equacao(2,-10,0);
+   Equacao equa3= new Equacao(6,-7,4);
+   print(equa1.calculaRaiz());
+   print(equa1.equals(equa2));
+   print(equa1.toString());
+   print("---------------");
+   print(equa2.calculaRaiz());
+   print(equa2.equals(equa3));
+   print(equa2.toString());
+   print("---------------");
+   print(equa3.calculaRaiz());
+   print(equa3.equals(equa1));
+   print(equa3.toString());
+ }

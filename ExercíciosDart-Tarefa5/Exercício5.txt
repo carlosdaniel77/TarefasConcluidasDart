@@ -1,0 +1,109 @@
+﻿import 'package:flutter/material.dart';
+import 'dart:math';
+//1
+void main() {
+runApp(MaterialApp(
+home: Home(),
+   ));
+}      
+ 
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  TextEditingController _a = TextEditingController();
+  TextEditingController _b = TextEditingController();
+  TextEditingController _c = TextEditingController();
+  String _resultado="";
+  int _delta=0;
+  double _raiz=0;
+  double _raiz2=0;
+  bool _consisteDigitacao() {
+    bool _consisteDigitacao = true;
+    if (int.tryParse(_a.text) == null){
+      _resultado = 'Digite apenas números';
+    _consisteDigitacao = false;
+    }
+    return _consisteDigitacao;
+  }
+  
+  void _calcular() {
+    setState(() {
+      if(_consisteDigitacao()){
+      _delta = (int.parse(_b.text)*int.parse(_b.text) - (4*(int.parse(_a.text)*int.parse(_c.text))));
+       if(_delta>0){
+        _raiz = ((int.parse(_b.text)*-1) + sqrt(_delta)) / (2 * int.parse(_a.text));
+        _raiz2 = ((int.parse(_b.text)*-1) - sqrt(_delta)) / (2 * int.parse(_a.text));
+        _resultado = "X1= "+_raiz.toString() + " X2= "+_raiz2.toString();  
+      }
+    }
+  });
+  
+  }
+  
+  void _limpar(){
+    setState((){
+      _a.text="";
+      _b.text="";
+      _c.text="";
+      _resultado="";
+    });
+  }
+  
+  Widget build(BuildContext context) { 
+  
+    return Scaffold(
+          appBar: AppBar(
+              title:Center(child:Text("Cálculo de Equação do 2ºGrau", style: TextStyle(color:Colors.black87))),
+              backgroundColor: Colors.redAccent    
+          ),
+          body: Column(children: <Widget>[
+            Padding(padding:EdgeInsets.fromLTRB(0,30,0,0),child:Icon(Icons.all_inclusive_sharp,size:100,color:Colors.black87)),
+            Padding(padding:EdgeInsets.fromLTRB(80,15,80,5), child:TextField(keyboardType: TextInputType.number, decoration: InputDecoration(labelText:"Digite um valor para A",
+                                                 labelStyle: TextStyle(color:Colors.black87),
+                                                 border: OutlineInputBorder()),
+            controller: _a,
+              
+            )),                                                                 
+            
+            Padding(padding:EdgeInsets.fromLTRB(80,15,80,5), child:TextField(keyboardType: TextInputType.number, decoration: InputDecoration(labelText:"Digite um valor para B",
+                                                 labelStyle: TextStyle(color:Colors.black87),
+                                                 border: OutlineInputBorder()),
+            controller: _b,
+                                                                             
+            )),
+              
+            Padding(padding:EdgeInsets.fromLTRB(80,15,80,5), child:TextField(keyboardType: TextInputType.number, decoration: InputDecoration(labelText:"Digite um valor para C",
+                                                 labelStyle: TextStyle(color:Colors.black87),
+                                                 border: OutlineInputBorder()),
+            controller: _c,
+                                                                             
+            )),
+            
+            Text(""),
+            Row(mainAxisAlignment:MainAxisAlignment.center, children: <Widget>[
+            Padding(padding:EdgeInsets.fromLTRB(0,0,0,0), child: RaisedButton(color:Colors.grey,
+                        padding:EdgeInsets.fromLTRB(35,20,30,20),
+                        child: Text("Limpar", style: TextStyle(fontSize:25,color:Colors.black87)), 
+                        onPressed:_limpar)), 
+            
+            Padding(padding:EdgeInsets.fromLTRB(20,0,0,0), child:RaisedButton(color:Colors.redAccent,
+                        padding:EdgeInsets.fromLTRB(35,20,35,20),
+                        child: Text("Calcular", style: TextStyle(fontSize:25,color:Colors.black87)), 
+                        onPressed:_calcular),), 
+              
+
+           ]),
+            
+            Padding(padding:EdgeInsets.fromLTRB(0,50,0,0),
+              child:Text(_resultado,
+              textAlign: TextAlign.center,
+              style: TextStyle(color:Colors.red, fontSize: 25.0))
+                    )
+         ]),   
+      );
+      
+  }
+}

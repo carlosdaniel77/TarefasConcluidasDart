@@ -1,0 +1,288 @@
+import 'dart:math';
+
+class Numero{ 
+  int _valor;
+  
+  // construtor
+  
+  Numero(this._valor);
+  
+  //gets e sets
+  
+  int getValor(){
+    return this._valor;
+  }
+  
+  void setValor(int valor){
+    this._valor = valor;
+  }
+  
+  // Metodos
+  
+  bool ePar(){
+    bool retorno = false;
+    if( this._valor%2==0){
+      retorno = true;      
+    }
+    return retorno;
+  }
+  
+   bool ePositivo(){
+    bool retorno = false;
+    if( this._valor>0){
+      retorno = true;      
+    }
+    return retorno;
+  }
+  
+  bool ePrimo(){
+      bool retorno = true;
+      for(int t=2;t<this._valor;t++)
+      {
+        if (this._valor % t == 0)
+        {
+          retorno=false;
+          break;
+        }
+        
+      }
+    return retorno;
+     } 
+  
+  String divisores(){
+   String div =" ";
+    for(int t=0;t<=this._valor;t++)
+      {
+        if (this._valor % t == 0)
+        {
+         div += " " + t.toString();
+        }        
+      }
+    return div;
+  }
+   int fatorial(){
+      int fat=1;
+      for(int t=1;t<=this._valor;t++)
+      {
+        fat*= t;
+      }return fat;
+    }
+    
+    String emBinario(){
+    int resultado = 0;
+    int numero = this._valor; 
+    String a="";
+      
+    while(numero > 0){
+      resultado = (numero%2);
+      numero = (numero/2).floor();
+      a = resultado.toString()+a;
+    }
+      
+    return a;
+  }
+  
+    String emOctal(){
+    int result = 0;
+    int numero = this._valor; 
+    String a="";
+      
+    while(numero > 0){
+      result = (numero%8);
+      numero = (numero/8).floor();
+      a = result.toString()+a;
+    }
+      
+    return a;
+  }
+  
+  String emHexadecimal(){
+    int numero = this._valor; 
+    String a="";
+    
+      a = numero.toRadixString(16);
+    
+    return a;
+  
+  }
+
+  double raizQuadrada(){   
+    double numero=this._valor.toDouble();
+    double result = sqrt(numero);
+      
+    return result;    
+ }
+  
+  int aoQuadrado(){
+    int numero=this._valor;
+    int result=0;
+    
+    result = numero*numero;
+    
+    return result;
+  }
+  
+  bool ePerfeito(){
+    int numero=this._valor;
+    bool result=false;
+    int div=0;
+    
+     for(int t=1;t<numero;t++)
+      {
+        if (numero % t == 0)
+        {
+          div += t; 
+          if(div==numero){
+          result=true;
+        }
+        }
+      }
+    
+    return result;
+  }
+  
+  bool maiorQue(int nume){
+    int numero=this._valor;
+    bool result = false;
+    if(numero>nume){
+      result = true;
+    }
+    return result;
+  }
+  
+  bool menorQue(int nume){
+    int numero=this._valor;
+    bool result = false;
+    if(numero<nume){
+      result = true;
+    }
+    return result;
+  }
+  
+  bool equals(int nume){
+    int numero=this._valor;
+    bool result = false;
+    if(numero==nume){
+      result = true;
+    }
+    return result;
+  }
+  
+  String toString(){
+    int numero=this._valor;
+    String result = numero.toString();
+    
+    return result;
+  }
+}
+  
+  
+  
+     
+ void main(){
+   Numero n1 = new Numero(100);
+   Numero n2 = new Numero(18);
+   Numero n3 = new Numero(2);
+   
+   //n1
+   print("Numero 1");
+   print("Seu numero é par?");
+   print(n1.ePar());
+   print("Seu numero é um primo?");
+   print(n1.ePrimo());
+   print("Seu numero é positivo?");
+   print(n1.ePositivo());
+   print("Esses são os divisores do seu numero");
+   print(n1.divisores());
+   print("Esse é o fatorial do seu numero");
+   print(n1.fatorial());
+   print("Esse é seu numero em binario");
+   print(n1.emBinario());
+   print("Esse é seu numeo em octal");
+   print(n1.emOctal());
+   print("Esse é seu numero em hexadecimal");
+   print(n1.emHexadecimal());
+   print("Essa é a raiz quadrada do seu numero");
+   print("√"+n1.raizQuadrada().toString());
+   print("Esse é seu numero ao quadrado");
+   print(n1.aoQuadrado());
+   print("Seu numero é perfeito?");
+   print(n1.ePerfeito());
+   print("Seu numero é maior que o parametro?");
+   print(n1.maiorQue(2));
+   print("Seu numero é menor que o parametro?");
+   print(n1.menorQue(1));
+   print("Seu numero é igual ao parametro?");
+   print(n1.equals(3));
+   print("Seu numero é :");
+   print(n1.toString());
+   print("-------------------------------");
+   
+   //n2
+   print("Numero 2");
+   print("Seu numero é par?");
+   print(n2.ePar());
+   print("Seu numero é um primo?");
+   print(n2.ePrimo());
+   print("Seu numero é positivo?");
+   print(n2.ePositivo());
+   print("Esses são os divisores do seu numero");
+   print(n2.divisores());
+   print("Esse é o fatorial do seu numero");
+   print(n2.fatorial());
+   print("Esse é seu numero em binario");
+   print(n2.emBinario());
+   print("Esse é seu numeo em octal");
+   print(n2.emOctal());
+   print("Esse é seu numero em hexadecimal");
+   print(n2.emHexadecimal());
+   print("Essa é a raiz quadrada do seu numero");
+   print("√"+n2.raizQuadrada().toString());
+   print("Esse é seu numero ao quadrado");
+   print(n2.aoQuadrado());
+   print("Seu numero é perfeito?");
+   print(n2.ePerfeito());
+   print("Seu numero é maior que o parametro?");
+   print(n2.maiorQue(2));
+   print("Seu numero é menor que o parametro?");
+   print(n2.menorQue(1));
+   print("Seu numero é igual ao parametro?");
+   print(n2.equals(3));
+   print("Seu numero é :");
+   print(n2.toString());
+   print("-------------------------------");
+   
+   //n3
+   print("Numero 3");
+   print("Seu numero é par?");
+   print(n3.ePar());
+   print("Seu numero é um primo?");
+   print(n3.ePrimo());
+   print("Seu numero é positivo?");
+   print(n3.ePositivo());
+   print("Esses são os divisores do seu numero");
+   print(n3.divisores());
+   print("Esse é o fatorial do seu numero");
+   print(n3.fatorial());
+   print("Esse é seu numero em binario");
+   print(n3.emBinario());
+   print("Esse é seu numeo em octal");
+   print(n3.emOctal());
+   print("Esse é seu numero em hexadecimal");
+   print(n3.emHexadecimal());
+   print("Essa é a raiz quadrada do seu numero");
+   print("√"+n3.raizQuadrada().toString());
+   print("Esse é seu numero ao quadrado");
+   print(n3.aoQuadrado());
+   print("Seu numero é perfeito?");
+   print(n3.ePerfeito());
+   print("Seu numero é maior que o parametro?");
+   print(n3.maiorQue(2));
+   print("Seu numero é menor que o parametro?");
+   print(n3.menorQue(1));
+   print("Seu numero é igual ao parametro?");
+   print(n3.equals(3));
+   print("Seu numero é :");
+   print(n3.toString());
+ 
+}

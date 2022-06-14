@@ -1,0 +1,180 @@
+abstract class Poligono{
+  
+  //Atributos
+  static int _nPoligonos=0;
+  int _nLados=0;
+
+  //Construtor com campos
+  Poligono(this._nLados){
+    if(_nPoligonos<0){
+      _nPoligonos=1; 
+    }
+    else
+    {
+      _nPoligonos++;
+    }
+  }
+
+  //Gets e Sets
+  int getnLados()
+  {
+    return this._nLados;
+  }
+  void setNLados(int numLados)
+  {
+    this._nLados = numLados;
+  }
+
+  //Métodos
+  double getArea();
+
+  double getPerimetro();
+
+  String toString()
+  {
+    return "Número de lados = " + this._nLados. toString()+ "\nPerimêtro = " + getPerimetro().toString()
+      + "\nÁrea = " + getArea().toString();
+  }
+}
+
+
+
+class Quadrado extends Poligono{
+  int _lado=0;
+
+  Quadrado(_nLados,this._lado) : super(_nLados);
+
+  double getArea()
+  {
+    return this._lado.toDouble() * this._lado.toDouble();
+
+  }
+  double getPerimetro(){
+    return (this._lado.toDouble() * 4);
+  }
+
+  bool equals( Quadrado quadrado){
+    bool retorno = false;
+    if(quadrado._lado == this._lado){
+      retorno = true;
+    }
+    return retorno;
+  }
+
+  String toString(){
+    return super.toString()+"\nValor dos Lados = " + this._lado.toString();
+  }
+}
+
+class Triangulo extends Poligono{
+int _lado1 = 0,_lado2 = 0,_lado3 = 0;
+
+//Construtor com campos
+Triangulo(nroLados,this._lado1,this._lado2,this._lado3):super(nroLados);
+
+//Métodos
+bool _eTriangulo(){
+  bool retorno = false;  
+    int soma12=this._lado1 + this._lado2;
+    int soma23=this._lado2 + this._lado3;
+    int soma31=this._lado1 + this._lado3;
+
+      if(soma12 > this._lado3 || soma23 > this._lado1 || soma31> this._lado2 ){
+         retorno = true;
+      }
+  
+      return retorno;
+}
+
+double getArea(){
+
+double resultado = 0;
+  if(_eTriangulo()==true){
+    if(this._lado1>this._lado2 && this._lado2>this._lado3){
+
+      resultado = (this._lado3 * this._lado1) / 2;
+    }
+      else if (this._lado1 > this._lado3 && this._lado3 > this._lado2)
+      {
+        resultado = (this._lado2 * this._lado1) / 2;
+      }
+        else if (this._lado2 > this._lado3 && this._lado3 > this._lado1)
+        {
+          resultado = (this._lado1 * this._lado2) / 2;
+        }
+          else if (this._lado2 > this._lado1 && this._lado1 > this._lado3)
+          {
+            resultado = (this._lado3 * this._lado2) / 2;
+          }
+            else if (this._lado3 > this._lado1 && this._lado1 > this._lado2)
+            {
+              resultado = (this._lado2 * this._lado3) / 2;
+            }
+              else if (this._lado3 > this._lado2 && this._lado2 > this._lado1)
+              {
+                resultado = (this._lado1 * this._lado3)/2;
+              }
+  }   
+  return resultado;
+}
+  
+double getPerimetro(){
+ double perimetro = 0;
+  
+  if(_eTriangulo()==true){
+    
+  perimetro = this._lado1.toDouble()+this._lado2.toDouble()
+    + this._lado3.toDouble();
+    
+    
+  }
+  return perimetro;
+}
+  bool equals(Triangulo tri){
+    int cont = 0;
+    
+    if(_eTriangulo() == true){    
+      if(tri._lado1==this._lado1&& tri._lado2 == this._lado2 && tri._lado3==this._lado3
+         || tri._lado1==this._lado1 && tri._lado2 == this._lado3 && tri._lado3==this._lado2 
+         || tri._lado1==this._lado2 && tri._lado2 == this._lado3 && tri._lado3==this._lado1
+         || tri._lado1==this._lado2 && tri._lado2 == this._lado1 && tri._lado3==this._lado3 
+         || tri._lado1==this._lado3 && tri._lado2 == this._lado2 && tri._lado3==this._lado1
+         || tri._lado1==this._lado3 && tri._lado2 == this._lado1 && tri._lado3==this._lado2)
+      {        
+        return true;
+      }
+      
+    }
+    
+  return false;
+ } 
+  
+  String toString(){
+     return "Lado1 =" +_lado1.toString()+"\nLado2 =" +_lado2.toString()+ "\nLado3 =" +_lado3.toString()+ "\n" + super.toString();
+  }
+}
+
+void main(){
+  Quadrado qua01 = new Quadrado(5,6);
+  Quadrado qua02 = new Quadrado(2,3);
+  Triangulo tri01= new Triangulo(3,4,5,3);
+  Triangulo tri02= new Triangulo(3,7,5,4);
+  Triangulo tri03= new Triangulo(3,5,9,7);
+
+  print("Número de Polígonos :" + Poligono._nPoligonos.toString());
+  print("");
+  print("Os Quadrados são iguais?"+qua01.equals(qua02).toString());
+  print(qua01.toString());
+  print("");
+  print("Os Quadrados são iguais?"+qua02.equals(qua01).toString());
+  print(qua02.toString());
+  print("");
+  print("O Objeto é um Triângulo?" + tri01._eTriangulo().toString());
+  print(tri01.toString());
+  print("");
+  print("O Objeto é um Triângulo?" + tri02._eTriangulo().toString());
+  print(tri02.toString());
+  print("");
+  print("O Objeto é um Triângulo?" + tri03._eTriangulo().toString());
+  print(tri03.toString());
+}

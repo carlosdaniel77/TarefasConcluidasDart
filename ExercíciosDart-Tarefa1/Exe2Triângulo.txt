@@ -1,0 +1,164 @@
+class Triangulo{ 
+  double _lado1=0, _lado2=0, _lado3=0;
+  
+  // construtor
+  Triangulo(this._lado1, this._lado2, this._lado3);
+  
+  //gets e sets
+  double getLado1(){
+    return this._lado1;
+  }
+  void setLado1(double lado1){
+    this._lado1 = lado1;
+  }
+   double getLado2(){
+    return this._lado2;
+  }
+  void setLado2(double lado2){
+    this._lado2 = lado2;
+  }
+   double getLado3(){
+    return this._lado3;
+  }
+  void setLado3(double lado3){
+    this._lado3 = lado3;
+  }
+  // Metodos
+  
+   bool _eTriangulo(){
+    double sLado12, sLado23, sLado31;
+    bool result=false;
+    sLado12 = this._lado1+this._lado2;
+    sLado23 = this._lado2+this._lado3;
+    sLado31 = this._lado3+this._lado1;
+    
+    if(sLado12 > this._lado3 && sLado23>this._lado1 && sLado31>this._lado2){
+      result=true;
+    }
+    return result;
+  }
+  
+  double area(){
+    double mult, resultado;
+    
+    if(_eTriangulo()==true){
+      if(this._lado1>this._lado2 && this._lado1>this._lado3 ){
+        print ("Primeiro lado menor = "+this._lado2.toString());
+        print ("Segundo lado menor = "+this._lado3.toString());
+        mult = this._lado2*this._lado3;
+        resultado=mult/2;
+        return resultado;
+        
+      }
+      
+      if(this._lado2>this._lado3 && this._lado2>this._lado1 ){
+        print ("Primeiro lado menor = "+this._lado1.toString());
+        print ("Segundo lado menor = "+this._lado3.toString());
+         mult = this._lado3*this._lado1;
+        resultado=mult/2;
+        return resultado;
+        
+      }
+      
+      if(this._lado3>this._lado2 && this._lado3>this._lado1 ) {
+        print("Primeiro lado menor = "+this._lado1.toString());
+        print("Segundo lado menor = "+this._lado2.toString());
+         mult = this._lado2*this._lado1;
+        resultado=mult/2;
+        
+        return resultado;
+      }    
+  }
+    return 0;
+ }
+  
+  double perimetro(){
+    double soma;
+     if(_eTriangulo()==true){
+       soma=this._lado1+this._lado2+this._lado3;
+       
+       return soma;
+     }
+    
+    return 0;
+  }
+
+  String tipo(){
+    String resultado;
+    if(_eTriangulo()==true){
+      
+      if(this._lado1==this._lado2 && this._lado2==this._lado3){
+        resultado=" Equilátero";
+        return resultado;       
+      } if(this._lado1!=this._lado2 && this._lado2 !=this._lado3 && 
+           this._lado1 !=this._lado3 ){
+        resultado=" Escaleno";
+        return resultado;            
+      } if(this._lado1==this._lado2 || this._lado3==this._lado2 || 
+           this._lado3==this._lado1){
+        resultado=" Isoceles";
+        return resultado;       
+      }
+    }return "Não é triangulo";
+  }
+  
+  bool equals(Triangulo tri){
+    int cont=0;
+    if(_eTriangulo()==true){    
+      if(tri._lado1==this._lado1 || tri._lado1==this._lado2 || 
+         tri._lado1==this._lado3 ){
+        cont++;
+      }if(tri._lado2==this._lado1 || tri._lado2==this._lado2 || 
+         tri._lado2==this._lado3 ){
+        cont++;
+      }if(tri._lado3==this._lado1 || tri._lado3==this._lado2 || 
+         tri._lado3==this._lado3 ){
+        cont++;
+      }if(cont==3){
+        return true;
+      }
+  }
+  return false;
+ } 
+  
+  String toString(){
+    if(_eTriangulo()==true){
+      return"lado 1 = "+ this._lado1.toString() + "\n"+
+           "lado 2 = "+ this._lado2.toString() + "\n"+
+           "lado 3 = "+ this._lado3.toString() + "\n";
+       
+    }
+    return "Não é triangulo";
+  }
+}  
+ void main(){
+   Triangulo t1 = new Triangulo(6,7,8);
+   Triangulo t2= new Triangulo(8,7,6);
+   Triangulo t3= new Triangulo(8,10,6);
+   
+   //
+   print("O objeto é triangulo? \n\n"+t1._eTriangulo().toString());
+   print("A area do triangulo é: "+t1.area().toString());
+   print("O perimetro do triangulo é:"+t1.perimetro().toString());
+   print("O triangulo é do tipo:"+ t1.tipo());
+   print("Os valores dos dois triangulos são iguais? \n\n"+t1.equals(t1).toString());
+   print(t1.toString());
+   print("---------------------");
+   
+   //
+   print("O objeto é triangulo? \n\n"+t2._eTriangulo().toString());
+   print("A area do triangulo é: "+t2.area().toString());
+   print("O perimetro do triangulo é:"+t2.perimetro().toString());
+   print("O triangulo é do tipo:"+ t2.tipo());
+   print("Os valores dos dois triangulos são iguais? \n\n"+t2.equals(t2).toString());
+   print(t2.toString());
+   print("---------------------");
+   
+   //
+   print("O objeto é triangulo? \n\n"+t3._eTriangulo().toString());
+   print("A area do triangulo é: "+t3.area().toString());
+   print("O perimetro do triangulo é:"+t3.perimetro().toString());
+   print("O triangulo é do tipo:"+ t3.tipo());
+   print("Os valores dos dois triangulos são iguais? \n\n"+t3.equals(t1).toString());
+   print(t3.toString());
+}

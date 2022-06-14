@@ -1,0 +1,122 @@
+//1º Exercício
+
+void main(){
+  var vetor = [1,2,3,4,5];
+  print(vetor.reversed);
+}
+
+//2º Exercício
+
+class Cliente{
+  //Atributos
+  String _cpf, _nome;
+  double _rendaMensal;
+  
+  //Construtor com campos
+  Cliente(this._cpf,this._nome,this._rendaMensal);
+  
+  //Gets e Sets
+  void setCpf(String cpf){
+    this._cpf = cpf;
+  }
+  
+  String getCpf(){
+    return this._cpf;
+  }
+  
+  void setNome(String nome){
+    this._nome = nome;
+  }
+  
+  String getNome(){
+    return this._nome;
+  }
+  
+  void setRendaMensal(double rendaMensal){
+    this._rendaMensal = rendaMensal;
+  }
+  
+  double getRendaMensal(){
+    return this._rendaMensal;
+  }
+  
+  String toString(){
+    return "CPF: \n{$_cpf} - Nome: \n{$_nome} - Renda Mensal: R\${$_rendaMensal}";
+  }
+  
+  //Métodos
+  bool equals(Cliente cliente){
+    bool retorno = false;
+    if(this._cpf == cliente._cpf 
+       && this._nome == cliente._nome 
+       && this._rendaMensal == cliente._rendaMensal){
+     retorno = true; 
+    }
+    return retorno;
+  }
+  
+  double getLimiteCredito(){
+    return this._rendaMensal * 0.3;
+  }  
+}
+
+void main(){
+  List<Cliente> clientes = [];
+  double somaLimCredito = 0;
+  
+  Cliente cliente1 = new Cliente("012.345.678-90","Emanuel",1000.00);
+  clientes.add(cliente1);
+  
+  Cliente cliente2 = new Cliente("098.765.432-10","Lucas",2000.00);
+  clientes.add(cliente2);
+  
+  Cliente cliente3 = new Cliente("123.654.789-99","Raquel",3000.00);
+  clientes.add(cliente3);
+  
+  Cliente cliente4 = new Cliente("456.123.987-81","Gustavo",4000.00);
+  clientes.add(cliente4);
+  
+  Cliente cliente5 = new Cliente("012.345.678-72","Lorena",5000.00);
+  clientes.add(cliente5);
+  
+  Cliente cliente6 = new Cliente("987.654.123-88","Gisele",6000.00);
+  clientes.add(cliente6);
+  
+  Cliente cliente7 = new Cliente("456.321.789-46","Gislaine",7000.00);
+  clientes.add(cliente7);
+  
+  Cliente cliente8 = new Cliente("321.654.987-11","Marquinhos",8000.00);
+  clientes.add(cliente8);
+  
+  Cliente cliente9 = new Cliente("654.987.123-63","Eliezer",9000.00);
+  clientes.add(cliente9);
+  
+  Cliente cliente10 = new Cliente("789.654.321-87","Ester",10000.00);
+  clientes.add(cliente10);
+  
+  for(Cliente cliente in clientes)
+  {
+    somaLimCredito += cliente.getLimiteCredito();
+  }
+  
+  print("Total do Limite de Crédito dos Clientes:R\$ ${somaLimCredito.toString()}");
+}
+
+//3º Exercício
+void main(){
+  Map<String,String> ddds = Map();
+  ddds["11"] = "São Paulo - SP";
+  ddds["31"] = "Belo Horizonte – MG";
+  ddds["13"] = "Santos – SP";
+  ddds["48"] = "Florianópolis – SC";
+  ddds["15"] = "Sorocaba – SP";
+  ddds["16"] = "Ribeirão Preto – SP";
+  ddds["17"] = "São José do Rio Preto – SP";
+  ddds["49"] = "Chapecó – SC";
+  ddds["19"] = "Campinas – SP";
+  ddds["21"] = "Rio de Janeiro – RJ";
+  
+  ddds.forEach((chave, valor) => print("| DDD: ${chave} | Cidade: ${valor}"));
+}
+
+
